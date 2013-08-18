@@ -25,12 +25,12 @@ function checkCollab(url) {
     xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", 'github.com/repos'+url+'/collaborators/'+nameDOM[0].text, false );
     xmlHttp.send( null );
-    if (xmlHttp.status == 204)
+    if (xmlHttp.status == 204 || url.indexOf("/" + nameDOM[0].text + "/") != 0)
     	return true;
     else 
     	return false;
 };
 
 function startChat(){
-	
+	console.log("startChat")
 };
