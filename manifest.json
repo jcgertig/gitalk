@@ -12,7 +12,7 @@
 	},
 	"content_scripts": [
     	{
-        	"matches": ["http://github.com/*"],
+        	"matches": ["http://github.com/*", "https://github.com/*"],
         	"js": ["content.js"]
     	}
 	]
