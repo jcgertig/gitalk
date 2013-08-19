@@ -1,32 +1,29 @@
 <!doctype html>
-<html ng-app ng-csp>
+<html >
 	<head>
-		<script src="angular.min.js"></script>
-		<!--<script src="angularfire.min.js"></script>-->
-		<link rel="stylesheet" href="styling.css">
 	</head>
 	<body>
-		<div id="chat-wrapper">
+		<div id="chat-wrapper" ng-app="gitalk" ng-csp="">
 			<div id="bar">
 				<span>Chatting in:<span id="repo-title">gitalk</span></span>
 				<span id="open-close" class="open">^</span>
 			</div>
-			<div id="chat-container">
-				<div id="chat">
+			<div id="chat-container" ng-controller="chatController">
+				<div id="chat" ng-repeat="message in messages">
 					<ul>
-						<li><span class="user">sheridanroberts:</span> Hi, I am great. I found out how to code a cyberstalking application for all sorts of lowlifes.</li>
-						<li><span class="user">otherguywithalongname:</span> That's great.</li>
+						<li>
+							<span class="user">{{message.from}}:</span> {{message.text}}
+						</li>
 					</ul>
-					</div>
-					<div id="usernames">
-						<ul>
-							<li class="username">Test</li>
-							<li>sheridanroberts</li>
-						</ul>
-					</div>
-				<div id="text_entry">
-					<input type="text" name="new_message" id="new_message" placeholder="type message">
 				</div>
+				<div id="usernames" ng-repeat="user in users">
+					<ul>
+						<li class="username">{{user.name}}</li>
+					</ul>
+				</div>
+				<form id="text_entry" ng-submit="addMessage()">
+					<input type="text" name="new_message" id="new_message" placeholder="type message" ng-model="message">
+				</form>
 			</div>
 		</div>
 	</body>
