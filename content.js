@@ -56,7 +56,4 @@ window.onload = function() {
 			gt.startChat(path);
 		}
 	}
-
-	//var openClose = document.getElementById('open-close');
-	//openClose.addEventListener('click',gt.openClose,false);
 };
