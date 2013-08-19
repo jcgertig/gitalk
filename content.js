@@ -1,36 +1,63 @@
-window.onload = function() {
-	var path = window.location.pathname;
-	if (checkRepo(path)){
-		if (checkCollab(path)){
-			startChat();
-		}
+;var gt = {
+	username    : '',
+	privaterepo : false,
+	collab      : false
+};
+;var github = new Github({
+  	username: "jcgertig",
+  	password: "barker17",
+  	auth: "basic"
+});
+gt.checkRepo = function checkRepo(url) {
+	var repo = github.getRepo(url[1], url[2]);
+	repo.show(isPrivate);
+	gt.privaterepo = true;
+	console.log(gt.privaterepo);
+    return gt.privaterepo;
+};
+
+function isPrivate(err, repo){
+	if (repo.private == true) {
+		gt.privaterepo = true;
+	}
+	console.log(gt.privaterepo);
+}
+
+gt.checkCollab = function checkCollab(url) {
+	gt.username = document.getElemetsByClassName('name')[0].text
+	var user = github.getUser();
+	user.repos(function(err, repos) {
+		console.debug(repos);
+	});
+};
+
+gt.openClose = function openClose(){
+	var chatCont = document.getElementById('chat-wrapper');
+	console.debug(chatCont);
+	if(chatCont.className === 'active'){
+		chatCont.className = '';
+	}else{
+		chatCont.className = 'active';
 	}
 };
 
-function checkRepo(url) {
-	var xmlHttp = null;
-    xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", 'github.com/repos'+url, false );
-    xmlHttp.send( null );
-    obj = JSON.parse(xmlHttp.responseText);
-    if (obj.private)
-    	return true;
-    else 
-    	return false;
-};
-
-function checkCollab(url) {
-	var nameDOM = document.getElemetsByClassName('name');
-	var xmlHttp = null;
-    xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", 'github.com/repos'+url+'/collaborators/'+nameDOM[0].text, false );
-    xmlHttp.send( null );
-    if (xmlHttp.status == 204 || url.indexOf("/" + nameDOM[0].text + "/") != 0)
-    	return true;
-    else 
-    	return false;
-};
-
-function startChat(){
+gt.startChat = function startChat(){
 	console.log("startChat")
+};
+
+window.onload = function() {
+	var path = window.location.pathname.split("/");
+	if (gt.checkRepo(path)){
+		if (gt.checkCollab(path)){
+			var element = document.createElement('div');
+			element.innerHtml = "<div id='big-wrapper'></div>";
+
+			$("body").append(element);
+			$("#big-wrapper").load(chrome.extention.getURL("index.html"));
+			gt.startChat();
+		}
+	}
+
+	//var openClose = document.getElementById('open-close');
+	//openClose.addEventListener('click',gt.openClose,false);
 };

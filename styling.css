@@ -1,41 +1,58 @@
-.bar {
-	background: #f8f8f8;
+#chat-wrapper {
 	position: fixed;
+	bottom: -302px;
+	right: 0;
+	width: 500px;
 	z-index: 5000;
-	bottom: -50;
-	left: 0;
-	display: block;
-	height: 50px;
-	width: 100%;
-}
-.bar.enter {
-	-webkit-animation: enter 200 ease 1;
-}
-@-webkit-keyframes enter {
-	0% {
-		bottom: -40;
-	}
-
-	50% {
-		opacity: -20;
-	}
-
-	75% {
-		opacity: -10;
-	}
-}
-#container {
-	position: relative;
-	width: 450px;
 	border: 1px solid #ddd;
 	border-radius: 4px 4px 0 0;
 	font-family: Helvetica, arial, freesans, clean, sans-serif;
+}
+#chat-wrapper.active {
+	bottom: 0;
+	-webkit-transition: all 200ms ease-in-out;\
+	transition: all 200ms ease-in-out;
+}
+#bar {
+	background: #f8f8f8;
+	display: block;
+	height: 25px;
+	width: 100%;
+	line-height: 25px;
+}
+#bar span {
+	padding-left: 10px;
+}
+#open-close {
+	float: right;
+	margin-right: 10px;
+	width: 20px;
+	background-color: transparent;
+	background-image:url('./chat-bubble.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	text-indent: -9999px;
+}
+#open-close:hover{
+	background-color:#ccc;
+	text-shadow: 0 1px 0 #eee;
+	cursor: pointer;
+}
+#chat-container {
+	position: relative;
+	border: 1px solid #ddd;
+	bottom: 0;
+	width: 100%;
 	font-size: .8em;
+	height: 300px;
+	overflow: hidden;
 }
 #chat {
-	height: 400px;
+	height: 265px;
 	width: 70%;
 	background: #f6f6f6;
+	overflow: auto;
 }
 #chat li {
 	padding-top: 5px;
@@ -49,6 +66,7 @@
 	width: 30%;
 	right: 0;
 	top: 0;
+	overflow: auto;
 }
 ul, li {
 	margin: 0;
@@ -70,4 +88,5 @@ li {
 }
 #text_entry {
 	border-top: 1px solid #ddd;
+	bottom: 0;
 }
