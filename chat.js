@@ -2,7 +2,7 @@
 
 var gitalk = angular.module('gitalk', ['firebase']);
 
-gitalk.controller('chatController', ['$scope', 'angularFire', 'angularFireCollection'
+gitalk.controller('chatController', ['$scope', 'angularFire', 'angularFireCollection', 
 	function chatController($scope, angularFire, angularFireCollection) {
 		var usersUrl = "https://gitalk-users.firebaseio.com/";
 		var messagesUrl = "https://gitalk-messages.firebaseio.com/";

@@ -7,14 +7,13 @@
         "default_popup": "popup.html"
     },
     "background": {
-    	"scripts": ["github.js"],
-    	"persistent": false
-	},
-	"content_scripts": [
-    	{
-        	"matches": ["http://github.com/*", "https://github.com/*"],
-        	"js": ["underscore-min.js", "base64.js","github.js", "content.js", "angular.min.js"],
-            "css": ["styling.css"]
-    	}
-	]
+        "scripts": ["github.js"],
+        "persistent": false
+    },
+    "content_scripts": [{
+        "matches": ["http://github.com/*", "https://github.com/*"],
+        "js": ["firebase.min.js", "jquery-1.10.2.min.js", "underscore-min.js", "base64.js", "github.js", "content.js", "angular.min.js", "angularfire.min.js", "chat.js"],
+        "css": ["styling.css"]
+    }],
+    "web_accessible_resources": ["chat.js", "firebase.min.js", "angular.min.js", "angularfire.min.js", "index.html", "chat-bubble.png" ]
 }
