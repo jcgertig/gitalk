@@ -6,8 +6,12 @@
         "default_title": "Git Talk",
         "default_popup": "popup.html"
     },
+    "options_page": "options.html",
+    "permissions": [
+        "storage"
+    ],
     "background": {
-        "scripts": ["github.js"],
+        "scripts": ["js/github.js"],
         "persistent": false
     },
     "content_scripts": [{
