@@ -1,47 +1,46 @@
 'use strict';
 
 var gitalk = angular.module('gitalk', ['firebase']);
-
-gitalk.controller('chatController', ['$scope', 'angularFire', 'angularFireCollection', 
-	function chatController($scope, angularFire, angularFireCollection) {
-		var usersUrl = "https://gitalk-users.firebaseio.com/";
-		var messagesUrl = "https://gitalk-messages.firebaseio.com/";
-
+//if (gt){
+	var usersUrl = "https://gitalk-main.firebaseio.com/users/" + gt.repo;
+	var chatUrl = "https://gitalk-main.firebaseio.com/chat/" + gt.repo;
+	gitalk.controller('chatController', ['$scope', 'angularFire',
+	  function ($scope, angularFire) {
+		var ref = new Firebase(chatUrl);
+		
 		// set up the terms used in index.html
-		var userPromise = angularFire(usersUrl, $scope, 'users');
-		var messagePromise = angularFire(messagesUrl, $scope, 'messages');
+		angularFire(ref.limit(30), $scope, 'messages', {});
 
 		// clear input field
 		$scope.message = '';
-		
-		if (gt) {
-			$scope.username = gt.username;
-		} else {
-			console.log("Could not find username.");
-		}
 
-		userPromise.then(function(users) {
-			handleUsers($scope);
-		});
-		messagePromise.then(function(messages) {
-			handleMessages($scope);
-		});
-	}
-]);
+		// set username
+		$scope.username = gt.username;
+
+		$scope.addMessage = function(){
+			$scope.messages[ref.push().name()] = {
+          		from: $scope.username,
+          		text: $scope.message
+        	};
+        	$scope.message = "";
+		}
+	
+	}]);
+//};
 
 function handleUsers($scope) {
 
 }
 
-function handleMessages($scope) {
-	$scope.addMessage = function() {
-		if (!$scope.message.length) {
+function handleChat($scope) {
+	$scope.addChat = function() {
+		if (!$scope.chat.length) {
 			return;
 		}
 
-		$scope.messages.push({
-			from: $scope.username,
-			text: $scope.message
+		$scope.chat.push({
+			from: gt.username,
+			text: $scope.chat
 		});
 	}
 }
