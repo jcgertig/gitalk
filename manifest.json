@@ -12,8 +12,8 @@
     },
     "content_scripts": [{
         "matches": ["http://github.com/*", "https://github.com/*"],
-        "js": ["firebase.min.js", "jquery-1.10.2.min.js", "underscore-min.js", "base64.js", "github.js", "content.js", "angular.min.js", "angularfire.min.js", "chat.js"],
+        "js": ["js/firebase.min.js", "js/jquery-1.10.2.min.js", "js/underscore-min.js", "js/base64.js", "js/github.js", "content.js", "js/angular.min.js", "js/angularfire.min.js", "chat.js"],
         "css": ["styling.css"]
     }],
-    "web_accessible_resources": ["chat.js", "firebase.min.js", "angular.min.js", "angularfire.min.js", "index.html", "chat-bubble.png" ]
+    "web_accessible_resources": ["chat.js", "js/firebase.min.js", "js/angular.min.js", "js/angularfire.min.js", "index.html", "chat-bubble.png" ]
 }
