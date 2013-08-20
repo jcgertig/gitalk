@@ -1,4 +1,4 @@
-#chat-wrapper {
+#gitalk-wrapper {
 	position: fixed;
 	bottom: -302px;
 	right: 0;
@@ -10,7 +10,7 @@
 	-webkit-transition: all 200ms ease-in-out;\
 	transition: all 200ms ease-in-out;
 }
-#chat-wrapper.active {
+#gitalk-wrapper.active {
 	bottom: 0;
 	-webkit-transition: all 200ms ease-in-out;\
 	transition: all 200ms ease-in-out;

@@ -70,7 +70,7 @@ function dealWithCollab(err, repos) {
 }
 
 gt.openClose = function openClose(){
-	$('#chat-wrapper').toggleClass("active");
+	$('#gitalk-wrapper').toggleClass("active");
 };
 
 gt.startChat = function startChat(){

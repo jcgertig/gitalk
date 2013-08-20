@@ -1,23 +1,25 @@
-<div id="chat-wrapper" ng-app="gitalk" ng-csp="">
-	<div id="bar">
-		<span>Chatting in:<span id="repo-title"></span></span>
-		<span id="open-close" class="open">^</span>
-	</div>
-	<div id="chat-container" ng-controller="chatController">
-		<div id="chat" ng-repeat="message in messages">
-			<ul>
-				<li>
-					<span class="user">{{message.from}}:</span> {{message.text}}
-				</li>
-			</ul>
+<div id="gitalk-wrapper">
+	<div id="chat-wrapper" ng-app="gitalk" ng-csp="">
+		<div id="bar">
+			<span>Chatting in:<span id="repo-title"></span></span>
+			<span id="open-close" class="open">^</span>
 		</div>
-		<div id="usernames" ng-repeat="user in users">
-			<ul>
-				<li class="username">{{user.name}}</li>
-			</ul>
+		<div id="chat-container" ng-controller="chatController">
+			<div id="chat" ng-repeat="message in messages">
+				<ul>
+					<li>
+						<span class="user">{{message.from}}:</span> {{message.text}}
+					</li>
+				</ul>
+			</div>
+			<div id="usernames" ng-repeat="user in users">
+				<ul>
+					<li class="username">{{user.name}}</li>
+				</ul>
+			</div>
+			<form id="text_entry" ng-submit="addMessage()">
+				<input type="text" name="new_message" id="new_message" placeholder="type message" ng-model="message">
+			</form>
 		</div>
-		<form id="text_entry" ng-submit="addMessage()">
-			<input type="text" name="new_message" id="new_message" placeholder="type message" ng-model="message">
-		</form>
 	</div>
 </div>
