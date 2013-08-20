@@ -4,20 +4,28 @@
     "manifest_version": 2,
     "browser_action": {
         "default_title": "Git Talk",
-        "default_popup": "options.html"
+        "default_popup": "index.html"
     },
     "options_page": "options.html",
     "permissions": [
-        "storage"
+        "tabs",
+        "storage",
+        "http://github.com/*",
+        "https://github.com/*",
+        "https://fastly.net/*",
+        "https://google-analytics.com/*",
+        "https://githubapp.com/*",
+        "https://*.firebaseio.com/*"
     ],
+    "content_security_policy": "script-src 'self' https://*.firebase.com/ https://*.firebaseio-demo.com/ https://cdn.firebase.com https://*.firebaseio.com; object-src 'self';  script-src 'self' https://github.global.ssl.fastly.net https://jobs.github.com https://ssl.google-analytics.com https://collector.githubapp.com",
     "background": {
-        "scripts": ["js/github.js"],
-        "persistent": false
+        "scripts": ["background.js"],
+        "persistent": true
     },
     "content_scripts": [{
-        "matches": ["http://github.com/*", "https://github.com/*"],
+        "matches": ["http://github.com/*", "https://github.com/*", "https://*.firebaseio.com/*"],
         "js": ["js/firebase.min.js", "js/jquery-1.10.2.min.js", "js/underscore-min.js", "js/base64.js", "js/github.js", "content.js", "js/angular.min.js", "js/angularfire.min.js", "chat.js"],
         "css": ["styling.css"]
     }],
-    "web_accessible_resources": ["chat.js", "js/firebase.min.js", "js/angular.min.js", "js/angularfire.min.js", "index.html", "chat-bubble.png" ]
+    "web_accessible_resources": ["chat.js", "js/firebase.min.js", "js/jquery-1.10.2.min.js", "js/firebase.min.js", "js/angular.min.js", "js/angularfire.min.js", "index.html", "chat-bubble.png", "gt-vars.js" ]
 }

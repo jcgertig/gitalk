@@ -4,7 +4,8 @@
 	username    : null,
 	privaterepo : null,
 	collab      : null,
-	url         : null
+	url         : null,
+	repo        : null
 };
 
 //Pull github user info from sync
@@ -74,8 +75,13 @@ gt.openClose = function openClose(){
 };
 
 gt.startChat = function startChat(){
-	console.log("startChat");
 	$('body').append("<div id='big-wrapper'></div>");
+	  $('body').append("<script src=" + chrome.extension.getURL("js/jquery-1.10.2.min.js") + "></script>" +
+	  	"<script src=" + chrome.extension.getURL("js/angular.min.js") + "></script>" +
+	  	"<script src=" + chrome.extension.getURL("gt-vars.js") + "></script>" +
+	  	"<script src=" + chrome.extension.getURL("js/firebase.min.js") + "></script>" +
+	  	"<script src=" + chrome.extension.getURL("js/angularfire.min.js") + "></script>" +
+	  	"<script src=" + chrome.extension.getURL("chat.js") + "></script>" );
 	$("#big-wrapper").load(chrome.extension.getURL("index.html"), function() {
 		$("#repo-title").text(gt.url[2]);
 		$("#open-close").css({"background-image": "url('" + chrome.extension.getURL("chat-bubble.png") + "')"});
@@ -90,7 +96,7 @@ window.onload = function() {
         	clearInterval(intvl1);
 
 			gt.url = window.location.pathname.split("/");
-
+			gt.repo = gt.url[1] + "/" + gt.url[2];
 			gt.checkRepo(dealWithRepo);
 			var intvl2 = setInterval(function() {
 		    	if (gt.privaterepo !== null) { 
