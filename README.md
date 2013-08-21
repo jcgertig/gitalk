@@ -7,8 +7,8 @@ Your github account settings will be synced with your chrome account if you are 
 Install
 =======
 <ol>
-  <li>Download the develop branch repo</li>
-  <li>Go into google chrome's extention page and turn on develeper mode in the top right</li>
-  <li>Select load unpacked extention and choose gitalk folder</li>
-  <li>Test on private repo</li>
+  <li>1. Download the develop branch repo</li>
+  <li>2. Go into google chrome's extention page and turn on develeper mode in the top right</li>
+  <li>3. Select load unpacked extention and choose gitalk folder</li>
+  <li>4. Test on private repo</li>
 </ol>
